@@ -1,0 +1,11 @@
+# Core libraries (leave JAX manual install)
+equinox
+optax
+torch
+torchvision
+matplotlib
+jaxtyping
+
+# JAX is special - install separately:
+# Follow documentation online for install instructions
+# https://docs.jax.dev/en/latest/installation.html
