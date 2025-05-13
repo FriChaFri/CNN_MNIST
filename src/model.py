@@ -1,7 +1,7 @@
 import equinox as eqx
 import jax
 import jax.numpy as jnp
-from jaxtyping import Array, Float, Int, PyTree  # https://github.com/google/jaxtyping
+from jaxtyping import Array, Float  # https://github.com/google/jaxtyping
  
 
 class CNN(eqx.Module):
