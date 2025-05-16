@@ -23,7 +23,7 @@ class CNN(eqx.Module):
             jax.nn.log_softmax
         ]
 
-    def __call__(self, x: Float[Array, "1 28 28"]) -> Float[Array, "10"]:
+    def __call__(self, x: Float[Array, "1 28 28"]) -> Float[Array, "10"]: # forward pass
         for layer in self.layers:
             x=layer(x)
         return x

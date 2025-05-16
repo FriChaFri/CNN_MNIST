@@ -5,7 +5,7 @@ import torchvision
 from constants import BATCH_SIZE
 
 def load_data(BATCH_SIZE=BATCH_SIZE):
-    normalise_data = torchvision.transforms.Compose(
+    normalize_data = torchvision.transforms.Compose( 
         [
             torchvision.transforms.ToTensor(),
             torchvision.transforms.Normalize((0.5,), (0.5,)),
@@ -15,13 +15,13 @@ def load_data(BATCH_SIZE=BATCH_SIZE):
         root="data/MNIST",
         train=True,
         download=True,
-        transform=normalise_data,
+        transform=normalize_data,
     )
     test_dataset = torchvision.datasets.MNIST(
         root="data/MNIST",
         train=False,
         download=True,
-        transform=normalise_data,
+        transform=normalize_data,
     )
     trainloader = torch.utils.data.DataLoader(
         train_dataset, batch_size=BATCH_SIZE, shuffle=True
@@ -31,6 +31,13 @@ def load_data(BATCH_SIZE=BATCH_SIZE):
     )
     return trainloader, testloader
 
+def get_trainloader():
+    trainloader, _ = load_data()
+    return trainloader
+
+def get_testloader():
+    _, testloader = load_data()
+    return testloader
 
 def show_batch(loader):
     import matplotlib.pyplot as plt
@@ -47,5 +54,7 @@ def show_batch(loader):
 
 if __name__ == "__main__":
     trainloader, testloader = load_data()
+    _ = get_testloader()
+    _ = get_trainloader()
     print("Loaded data successfully")
     show_batch(trainloader)
