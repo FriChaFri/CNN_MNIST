@@ -2,11 +2,11 @@
 BATCH_SIZE = 64
 LEARNING_RATE = 3e-4
 EPOCHS = 10
-TRAINING_STEPS = 100
+TRAINING_STEPS = 300
 
-# Data paths
+# paths
 DATA_DIR = "data/MNIST"
-MODEL_SAVE_PATH = "models/cnn_model.pkl"
+MODEL_SAVE_PATH = "models/cnn_model.eqx"
 
 # Random seed
 SEED = 5678
