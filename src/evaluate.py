@@ -6,11 +6,6 @@ import jax.numpy as jnp
 import torch.utils.data.dataloader
 from utils import loss
 
-def load_model(path, key):
-    model_structure = CNN(key)
-    model = eqx.tree_deserialise_leaves(path, model_structure)
-    print(f"✅ Loaded model from: {path}")
-    return model
 
 
 @eqx.filter_jit

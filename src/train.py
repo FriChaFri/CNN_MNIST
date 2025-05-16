@@ -15,15 +15,6 @@ from utils import loss
 
 
 
-def save_model(model, path):
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    eqx.tree_serialise_leaves(path, model)
-    print(f"✅ Saved model to: {path}")
-
-
-
-
-
 
 """
 🧠 Visual Analogy: What's Happening?
@@ -42,9 +33,6 @@ optax.update(...) says: "Based on how the last few waves looked, here's how we s
 apply_updates() steers the boat by updating the model.
 
 """
-
-
-
 
 def train(
     model: CNN,

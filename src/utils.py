@@ -2,7 +2,10 @@ from jaxtyping import Float, Int, Array
 from model import CNN
 import jax
 import jax.numpy as jnp
+import equinox as eqx
 
+
+@eqx.filter_jit
 def loss(
     model: CNN, 
     x: Float[Array, "batch 1 28 28"], 
@@ -18,6 +21,7 @@ def loss(
     pred_y = jax.vmap(model)(x)
     return cross_entropy(y, pred_y)
 
+@eqx.filter_jit
 def cross_entropy(
     y: Int[Array, " batch"], 
     pred_y: Float[Array, "batch 10"]
@@ -32,3 +36,21 @@ def cross_entropy(
     """
     pred_y = jnp.take_along_axis(pred_y, jnp.expand_dims(y,1),axis=1)
     return -jnp.mean(pred_y)
+
+
+
+def save_model(model, path):
+    import os
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    eqx.tree_serialise_leaves(path, model)
+    print(f"✅ Saved model to: {path}")
+
+
+
+def load_model(path, key):
+    model_structure = CNN(key)
+    model = eqx.tree_deserialise_leaves(path, model_structure)
+    print(f"✅ Loaded model from: {path}")
+    return model
+
+
